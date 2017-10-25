@@ -1,0 +1,2 @@
+model	MNXL (protein monomer)	Matched	Violating	Non-accessible
+jwalk_output_file.txt	-0.3	0	0	3
