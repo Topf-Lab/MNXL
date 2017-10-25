@@ -1,9 +1,7 @@
-
-#     MNXL - Validate models using restraints from Crosslinking Mass Spectrometry
+#     MNXL - Validate models using restraints from Crosslinking-Mass Spectrometry
      
      Copyright 2016 MNXL Inventor and Birkbeck College University of London.
                           The MNXL Inventor is: Josh Bullock
- 
  
      MNXL is available under Public Licence.
      This software is made available under GPL V3
@@ -25,18 +23,15 @@ RUNNING MNXL:
 
 type "mnxl" plus any of the below flags:
 
-  -h, --help        show this help message and exit
-  -lys              calculate lysine crosslinks (default)
-  -xl_list XL_LIST  calculate crosslinks from input list (see Examples)
-  -i I              specify input pdb: -i <inputfile.pdb>   (default runs on every .pdb in directory)
-  -aa1 AA1          specify starting amino-acid via three letter code eg. HIS
-  -aa2 AA2          specify starting amino-acid via three letter code eg. TYR
-  -surface          use higher accuracy method to calculate solvent accessibility - slower
+  -h, --help            show this help message and exit
+  -data DATA            specify experimental data: -data <input_data.txt>
+  -mod_xl MOD_XL [MOD_XL ...]
+                        specify simulated model data: -mod_xl <model_data.txt>
+  -jwalk                flag to use if starting from .pdb files and running
+                        Jwalk
+  -pdb PDB [PDB ...]    specify input pdbs: -mod_xl <model_data.pdb>
 
-if no flags are added, Jwalk will calculate the SASDs between all lysine residues on
-every .pdb file in the directory.
-
-CROSSLINK LIST INPUT:
+EXPERIMENTAL DATA INPUT:
 
 Crosslinks should be listed in a pipe-delimited .txt file as so:
 
@@ -50,17 +45,15 @@ eg. 34|x|56|x|
 
 See the example file for a sample list.
 
+MODEL DATA INPUT:
+
+Jwalk output files (or output from any other distance calculation program) can be 
+used as long as it is formatted as follows:
+
+Index         Model         Atom1         Atom2         SASD          Euclidean Distance
+1             test.pdb      LYS-52-A-CA   LYS-129-A-CA  57.1556689427 26.1061187272
+etc. 
+
 OUTPUT:
 
-Two output files are generated in ./Jwalk_results/ 
-
-<pdb>_crosslink_list.txt
-
-<pdb>_crosslinks.pdb
-
-In order to visualize the crosslinks in Chimera select Actions>Atoms/Bonds>show
-Better representation in chimera in progress ...
-
-Please try the test in JWalk/Examples/
-
-Happy crosslinking !
+MNXL_scores.txt gives the MNXL score as well as the number of matched, violating, and non-accessible crosslinks
