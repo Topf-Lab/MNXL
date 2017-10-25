@@ -43,7 +43,7 @@ try:
 except:
     print "MNXL requires Jwalk if the -jwalk option is to be used" 
     print "Jwalk can be downloaded from https://github.com/Topf-Lab/Jwalk"
-    sys.exit(-1)
+    
 
 
 setup(
